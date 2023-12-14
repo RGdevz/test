@@ -22,6 +22,6 @@ jobs:
           ./mypkg build:nginx
         shell: alpine.sh --root {0}
         env:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     
