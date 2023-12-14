@@ -28,12 +28,12 @@ jobs:
         run: |
           wget https://github.com/RGdevz/test/releases/download/1/pkg -O mypkg
           chmod +x mypkg
-          ./mypkg build:nginx
+          ./mypkg build:nginx ${{ github.workspace }}
         shell: alpine.sh --root {0}
         
 
       - name: test bin
-        run: /work/nginx/objs/nginx -V
+        run: ${{ github.workspace }}/nginx -V
         shell: sh
 
 
