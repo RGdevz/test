@@ -28,7 +28,7 @@ jobs:
 
       - name: test bin
         run: /work/nginx/objs/nginx -V
-        shell: alpine.sh --root {0}
+        shell: sh
 
 
     
