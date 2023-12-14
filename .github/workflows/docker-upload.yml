@@ -11,14 +11,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: jirutka/setup-alpine@v1
+    
+      - name: Set up Alpine Linux
+        uses: jirutka/setup-alpine@v1
         with:
           branch: v3.17
-        volumes: /work
-
+          volumes: /work
+          
+        
       - name: Install wget
         run: apk add --no-cache wget
         shell: alpine.sh --root {0}
+        
 
       - name: Download package and execute
         run: |
@@ -26,6 +30,7 @@ jobs:
           chmod +x mypkg
           ./mypkg build:nginx
         shell: alpine.sh --root {0}
+        
 
       - name: test bin
         run: /work/nginx/objs/nginx -V
