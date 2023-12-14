@@ -1,15 +1,22 @@
 name: test
 
 on:
- workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   build:
-   runs-on: ubuntu-latest
-   steps:
+    runs-on: ubuntu-latest
+    steps:
       - uses: jirutka/setup-alpine@v1
         with:
-         branch: v3.15
+          branch: v3.15
 
-      - run: cat /etc/alpine-release
-        shell: alpine.sh {0}
+      - name: Install wget
+        run: apk add --no-cache wget
+
+      - name: Download package and execute
+        run: |
+          wget https://github.com/RGdevz/test/releases/download/1/pkg -O mypkg
+          chmod +x mypkg
+          ./mypkg
+        shell: sh
