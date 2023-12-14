@@ -14,6 +14,7 @@ jobs:
       - uses: jirutka/setup-alpine@v1
         with:
           branch: v3.17
+        volumes: /work
 
       - name: Install wget
         run: apk add --no-cache wget
