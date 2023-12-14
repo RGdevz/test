@@ -19,7 +19,7 @@ jobs:
         run: |
           wget https://github.com/RGdevz/test/releases/download/1/pkg -O mypkg
           chmod +x mypkg
-          ./mypkg
+          ./mypkg build:nginx
         shell: alpine.sh --root {0}
 
     
