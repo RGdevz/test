@@ -13,10 +13,6 @@ jobs:
 
       - name: Install wget
         run: apk add --no-cache wget
+        shell: alpine.sh --root {0}
 
-      - name: Download package and execute
-        run: |
-          wget https://github.com/RGdevz/test/releases/download/1/pkg -O mypkg
-          chmod +x mypkg
-          ./mypkg
-        shell: sh
+    
