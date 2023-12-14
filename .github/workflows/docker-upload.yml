@@ -32,9 +32,10 @@ jobs:
         shell: alpine.sh --root {0}
         
 
-      - name: test bin
-        run: ${{ github.workspace }}/nginx -V
-        shell: sh
+      - name: upload
+        with:
+         name: nginx
+         path: ${{ github.workspace }}/nginx
 
 
     
