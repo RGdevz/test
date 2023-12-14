@@ -22,4 +22,9 @@ jobs:
           ./mypkg build:nginx
         shell: alpine.sh --root {0}
 
+      - name: Try to run the binary
+        run: ./nginx -V
+        working-directory: /work/nginx/objs
+        shell: alpine.sh --root {0}
+
     
