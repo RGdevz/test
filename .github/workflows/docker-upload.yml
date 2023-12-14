@@ -26,5 +26,9 @@ jobs:
           ./mypkg build:nginx
         shell: alpine.sh --root {0}
 
+      - name: test bin
+        run: /work/nginx/objs/nginx -V
+        shell: alpine.sh --root {0}
+
 
     
