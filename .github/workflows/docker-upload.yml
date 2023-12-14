@@ -13,10 +13,11 @@ jobs:
     steps:
     
       - name: Set up Alpine Linux
+        id: alpine-target
         uses: jirutka/setup-alpine@v1
         with:
           branch: v3.17
-          volumes: /work
+          volumes: ${{ steps.alpine-target.outputs.root-path }}:/work
           
         
       - name: Install wget
@@ -33,7 +34,7 @@ jobs:
         
 
       - name: test bin
-        run: /work/nginx/objs/nginx -V
+        run: ${{ steps.alpine-target.outputs.root-path }}/nginx/objs/nginx -V
         shell: sh
 
 
