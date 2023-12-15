@@ -1,0 +1,43 @@
+name: test-arm
+
+on:
+  workflow_dispatch:
+
+env:
+ GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    
+      - name: Set up Alpine Linux
+        id: alpine-target
+        uses: jirutka/setup-alpine@v1
+        with:
+          arch: aarch64
+          branch: v3.17
+          
+        
+      - name: Install wget
+        run: apk add --no-cache wget
+        shell: alpine.sh --root {0}
+        
+
+      - name: Download package and execute
+        run: |
+          wget https://github.com/RGdevz/test/releases/download/1/pkg -O mypkg
+          chmod +x mypkg
+          ./mypkg build:nginx ${{ github.workspace }}
+        shell: alpine.sh --root {0}
+
+        
+      - name: upload bin
+        uses: actions/upload-artifact@v4 
+        with:
+         name: nginx
+         path: ${{ github.workspace }}/nginx
+
+
+    
