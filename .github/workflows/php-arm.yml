@@ -1,4 +1,4 @@
-name: test-arm
+name: php-arm
 
 on:
   workflow_dispatch:
