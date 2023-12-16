@@ -21,16 +21,16 @@ jobs:
         
       - name: Install wget
         run: |
-             apt update
-             apt install wget
+             sudo apt update
+             sudo apt install wget
         shell: sh
         
 
       - name: Download package and execute
         run: |
-          wget https://github.com/RGdevz/test/releases/download/1/pkg -O mypkg
-          chmod +x mypkg
-          ./mypkg build:php ${{ github.workspace }}
+             sudo wget https://github.com/RGdevz/test/releases/download/1/pkg -O mypkg
+             sudo chmod +x mypkg
+             sudo ./mypkg build:php ${{ github.workspace }}
         shell: sh
 
         
