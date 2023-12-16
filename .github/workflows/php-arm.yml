@@ -9,20 +9,21 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     
-      - name: Set up Alpine Linux
-        id: alpine-target
-        uses: jirutka/setup-alpine@v1
+              
+      - name: Cross-Compile Support on Ubuntu          
+        uses: cyberjunk/gha-ubuntu-cross@v4
         with:
-          arch: aarch64
-          branch: v3.17
+          arch: arm64
           
         
       - name: Install wget
-        run: apk add --no-cache wget
-        shell: alpine.sh --root {0}
+        run: |
+             apt update
+             apt install wget
+        shell: sh
         
 
       - name: Download package and execute
@@ -30,14 +31,14 @@ jobs:
           wget https://github.com/RGdevz/test/releases/download/1/pkg -O mypkg
           chmod +x mypkg
           ./mypkg build:php ${{ github.workspace }}
-        shell: alpine.sh --root {0}
+        shell: sh
 
         
       - name: upload bin
         uses: actions/upload-artifact@v4 
         with:
-         name: nginx
-         path: ${{ github.workspace }}/nphp
+         name: php
+         path: ${{ github.workspace }}/php
 
 
     
